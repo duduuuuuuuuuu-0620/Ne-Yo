@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { Award, Camera, Music, Heart } from 'lucide-react';
+import { I18nContext } from '../lib/i18n';
 
 const ExperienceItem = ({ icon: Icon, title, subtitle, description, year }: any) => (
   <motion.div
@@ -25,33 +26,35 @@ const ExperienceItem = ({ icon: Icon, title, subtitle, description, year }: any)
 );
 
 export const Career = () => {
+  const { t } = useContext(I18nContext);
+
   return (
     <section id="career" className="py-32 px-8 md:px-20 grid md:grid-cols-2 gap-20 bg-zinc-950">
       <div>
         <h2 className="font-display text-7xl font-bold tracking-tighter mb-12 uppercase leading-none">
-          Beyond<br /><span className="text-stroke">The Mic</span>
+          {t('careerHeadline')}<br /><span className="text-stroke">{t('careerSubheadline')}</span>
         </h2>
         <div className="space-y-4">
           <ExperienceItem
             icon={Award}
-            year="2006 - PRESENT"
-            title="Grammy Laurels"
-            subtitle="Recognition of Excellence"
-            description="Winner of 3 Grammy Awards and 15 nominations. His signature songwriting for others changed the landscape of late 2000s pop."
+            year={t('careerItem1Year')}
+            title={t('careerItem1Title')}
+            subtitle={t('careerItem1Subtitle')}
+            description={t('careerItem1Description')}
           />
           <ExperienceItem
             icon={Camera}
-            year="2007 - PRESENT"
-            title="Silver Screen"
-            subtitle="The Actor's Journey"
-            description="Starred in cult classics like 'Stomp the Yard' and 'Save the Last Dance 2', and historical drama 'Red Tails'."
+            year={t('careerItem2Year')}
+            title={t('careerItem2Title')}
+            subtitle={t('careerItem2Subtitle')}
+            description={t('careerItem2Description')}
           />
            <ExperienceItem
             icon={Music}
-            year="THE GHOSTWRITER"
-            title="Songwriting"
-            subtitle="The Pen behind 'Irreplaceable'"
-            description="Wrote massive hits for Beyoncé, Rihanna ('Unfaithful'), and more. A true master of emotional R&B narratives."
+            year={t('careerItem3Year')}
+            title={t('careerItem3Title')}
+            subtitle={t('careerItem3Subtitle')}
+            description={t('careerItem3Description')}
           />
         </div>
       </div>
@@ -61,7 +64,7 @@ export const Career = () => {
             <div className="aspect-[4/5] bg-zinc-900 relative overflow-hidden group">
                <img
                  src="https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?w=800&fit=crop"
-                 alt="Performing"
+                 alt={t('careerImageAlt')}
                  className="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110"
                />
                <div className="absolute bottom-8 left-8">
@@ -72,13 +75,13 @@ export const Career = () => {
                <div className="p-8 border border-zinc-800 flex flex-col justify-between aspect-square">
                   <Heart className="text-brand-red w-8 h-8" />
                   <div>
-                    <h5 className="font-display font-bold uppercase">Personal Life</h5>
-                    <p className="text-[10px] text-zinc-500 mt-2 uppercase tracking-tight">Focus on family and philanthropy through the Composite Foundation.</p>
+                    <h5 className="font-display font-bold uppercase">{t('careerCard1Title')}</h5>
+                    <p className="text-[10px] text-zinc-500 mt-2 uppercase tracking-tight">{t('careerCard1Description')}</p>
                   </div>
                </div>
                <div className="bg-brand-red p-8 flex flex-col justify-between aspect-square text-white">
                   <span className="font-display text-4xl font-bold">15+</span>
-                  <p className="text-[10px] font-bold uppercase tracking-wider">Years of dominating the R&B charts globally.</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider">{t('careerCard2Description')}</p>
                </div>
             </div>
          </div>

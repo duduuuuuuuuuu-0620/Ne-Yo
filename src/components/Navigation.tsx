@@ -3,10 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import { I18nContext } from '../lib/i18n';
 
 export const Navigation = () => {
+  const { setLang, lang, t } = useContext(I18nContext);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -15,11 +17,11 @@ export const Navigation = () => {
   });
 
   const sections = [
-    { id: 'hero', label: 'THE LEGACY' },
-    { id: 'music', label: 'MUSIC' },
-    { id: 'career', label: 'CAREER' },
-    { id: 'personal', label: 'PERSONAL' },
-    { id: 'fanzone', label: 'FAN ZONE' }
+    { id: 'hero', label: t('navLegacy') },
+    { id: 'music', label: t('navMusic') },
+    { id: 'career', label: t('navCareer') },
+    { id: 'personal', label: t('navPersonal') },
+    { id: 'fanzone', label: t('navFanzone') }
   ];
 
   return (
@@ -36,6 +38,13 @@ export const Navigation = () => {
               {s.label}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={() => setLang(lang === 'en' ? 'zh' : 'en')}
+            className="px-3 py-2 text-[10px] font-semibold tracking-[0.2em] uppercase border border-white/20 rounded hover:bg-white/10 transition"
+          >
+            {t('navLanguage')}
+          </button>
         </nav>
       </header>
     </>
